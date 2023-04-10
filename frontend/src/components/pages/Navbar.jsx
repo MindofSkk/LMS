@@ -91,8 +91,10 @@ export const Navbar = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to="/books" style={{textDecoration:"none" ,color:"Black" }}>
-               
+                <Link
+                  to="/books"
+                  style={{ textDecoration: "none", color: "Black" }}
+                >
                   <Typography textAlign="center">Books</Typography>
                 </Link>
               </MenuItem>
@@ -118,7 +120,7 @@ export const Navbar = () => {
             LMS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to="/books" style={{textDecoration:"none"}}>
+            <Link to="/books" style={{ textDecoration: "none" }}>
               {" "}
               <Button
                 onClick={handleCloseNavMenu}
@@ -158,16 +160,20 @@ export const Navbar = () => {
                 </MenuItem>
               ))} */}
 
-                <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Signup/Login</Typography>
-                </MenuItem>
-                <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Admin</Typography>
-                </MenuItem>
-                <MenuItem  onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-              
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  {" "}
+                  <Link to="/signup">Signup/Login</Link>{" "}
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  <Link to="/admin">Admin</Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

@@ -30,6 +30,8 @@ export const Books = () => {
 
   return (
     <div>
+      <h2>List of all Books</h2>
+      <hr/>
       <div>
         <br />
         <input
