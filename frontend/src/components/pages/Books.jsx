@@ -34,8 +34,9 @@ export const Books = () => {
       <div style={{ textAlign: "center" }}>
         <br />
         <input
+        className={styles.input}
           type="text"
-          placeholder="Enter the Book Name"
+          placeholder=" Enter the Book Name..."
           onChange={(e) => {
             setValue(e.target.value);
             handlesearch();

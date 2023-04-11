@@ -1,36 +1,9 @@
-.grid{
-    display: grid;
-    padding-top: 20px;
-    margin: auto;
-    grid-template-columns: repeat(4,1fr);
-    gap:5px;
-    width: 98%;
+.input{
+
+    /* background-color: red; */
+    border: none;
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    
 }
-.grid>div{
-
-border: 1px solid black;
-}
-
-@media all and (min-width: 413) and (max-width: 700px) {
-
-    .grid{
-        display: grid;
-        padding-top: 20px;
-        margin: auto;
-        grid-template-columns: repeat(3,1fr);
-        gap:5px;
-        width: 98%;
-    }
-}
-@media all and (min-width: 50px) and (max-width: 412px) {
-
-    .grid{
-        display: grid;
-        padding-top: 20px;
-        margin: auto;
-        grid-template-columns: repeat(2,1fr);
-        gap:5px;
-        width: 98%;
-    }
-}
-

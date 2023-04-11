@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import Box from "@mui/material/Box";
 // import Button from '@mui/material/Button';
@@ -33,7 +34,7 @@ export const TableData = (data) => {
 
   const addthisdata = (e) => {
     console.log(e.id);
-
+   alert("First Login")
     // let fadata=alldata.filter((item)=>{
     // })
   };
@@ -107,11 +108,22 @@ export const TableData = (data) => {
               <TableCell align="center">{row.author}</TableCell>
               <TableCell align="center">{row.pages}</TableCell>
               <TableCell align="center" onClick={(e) => handleOpen(row)}>
-                <u> More Details</u>{" "}
+                {/* <u style={{color:"green",fontWeight:"bolder"}}> More Details</u>{" "} */}
+                <Button variant="contained" endIcon={<ExpandMoreIcon />}>
+                  More Details
+                </Button>
               </TableCell>
 
               <TableCell align="center">
-                <Button variant="outlined" onClick={(e) => addthisdata(row)}>
+                <Button
+                  variant="outlined"
+                  onClick={(e) => addthisdata(row)}
+                  style={{
+                    color: "green",
+                    border: "1px solid green",
+                    fontWeight: "bolder",
+                  }}
+                >
                   Add
                 </Button>
               </TableCell>

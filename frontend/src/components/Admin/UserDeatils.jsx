@@ -17,7 +17,10 @@ export const UserDeatils = () => {
     >
       Admin
     </h3>
-    <Button>Add Books</Button>
-  </div>{" "} <hr /></div>
+    <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
+  </div>{" "} <hr />
+  
+<h4 style={{textAlign:"center"}}>  No user find...
+</h4>  </div>
   )
 }

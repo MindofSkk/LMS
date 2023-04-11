@@ -30,9 +30,19 @@ export const Signup = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Enter Your Name"
+            name="Text"
+            // autoComplete="name"
+            autoFocus
+          />
           <TextField
             margin="normal"
             required
@@ -43,6 +53,7 @@ export const Signup = () => {
             autoComplete="email"
             autoFocus
           />
+
           <TextField
             margin="normal"
             required
@@ -53,17 +64,17 @@ export const Signup = () => {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign up
           </Button>
           <Grid container>
             

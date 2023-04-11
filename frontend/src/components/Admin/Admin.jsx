@@ -29,7 +29,7 @@ const style = {
 
 export const Admin = (data) => {
   const [alldata, setAlldata] = useState([]);
- const navigate=useNavigate()
+  const navigate = useNavigate();
   const getdata = () => {
     axios.get("http://localhost:7000/Books").then((res) => {
       setAlldata(res.data);
@@ -59,13 +59,23 @@ export const Admin = (data) => {
   };
   const handleClose = () => setOpen(false);
 
+  //delete Part;
+
+  const DeleteBooks = (e) => {
+    let id = e.id;
+    axios
+      .delete(`http://localhost:7000/Books/${id}`)
+      .then((res) =>getdata() )
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {" "}
-        <Button onClick={()=>navigate("/userdetails")}>User Details</Button>
+        <Button onClick={() => navigate("/userdetails")}>User Details</Button>
         <h3 style={{ textAlign: "center" }}>Admin</h3>
-        <Button onClick={()=>navigate("/addbooks")}>Add Books</Button>
+        <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
       </div>
 
       {/* //table Section */}
@@ -140,7 +150,7 @@ export const Admin = (data) => {
                 <TableCell align="center">
                   <Button
                     variant="outlined"
-                    onClick={(e) => addthisdata(row)}
+                    onClick={(e) => DeleteBooks(row)}
                     style={{ color: "red", border: "1px solid red" }}
                   >
                     Delete
