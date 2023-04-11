@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 import styles from "./Book.module.css";
+import { Button } from "@mui/material";
+import { TableData } from "./TableData";
 export const Books = () => {
-  const [book, setBook] = useState([]);
+  const [books, setBook] = useState([]);
   const [value, setValue] = useState("");
 
   const getdata = () => {
     axios.get("http://localhost:7000/Books").then((res) => {
-      // console.log(res.data);
       setBook(res.data);
     });
   };
@@ -30,9 +31,21 @@ export const Books = () => {
 
   return (
     <div>
-      <h2>List of all Books</h2>
-      <hr/>
-      <div>
+      <div style={{ textAlign: "center" }}>
+        <br />
+        <input
+          type="text"
+          placeholder="Enter the Book Name"
+          onChange={(e) => {
+            setValue(e.target.value);
+            handlesearch();
+          }}
+        />
+      </div>
+      <hr />
+
+      <TableData data={books} />
+      {/* <div style={{textAlign:"center"}}>
         <br />
         <input
           type="text"
@@ -54,10 +67,11 @@ export const Books = () => {
                 <strong>{e.title}r</strong>
               </p>
               <p>{e.publisher}</p>
+              <div> <Button variant="text">More Details</Button>   <Button variant="outlined">Add This Book</Button></div>
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

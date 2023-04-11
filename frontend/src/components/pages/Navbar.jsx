@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import { Link } from "react-router-dom";
-const settings = ["Singup / Login", "Admin", "Logout"];
+// const settings = ["Singup / Login", "Admin", "Logout"];
 
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);

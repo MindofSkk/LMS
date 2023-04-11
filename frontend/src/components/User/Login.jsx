@@ -30,7 +30,7 @@ export const Login = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          login        </Typography>
+          Login        </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -62,7 +62,7 @@ export const Login = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            login
+            Login
           </Button>
           <Grid container>
             <Grid item xs>

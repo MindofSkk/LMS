@@ -7,6 +7,8 @@ import { Users } from "../User/Users";
 import { Books } from "../pages/Books";
 import { Login } from "../User/Login";
 import { Signup } from "../User/Signup";
+import { AddBooks } from "../Admin/AddBooks";
+import { UserDeatils } from "../Admin/UserDeatils";
 
 export const MainRoutes = () => {
   return (
@@ -17,6 +19,11 @@ export const MainRoutes = () => {
       <Route path="/books" element={<Books />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/addbooks" element={<AddBooks />} />
+      <Route path="/userdetails" element={<UserDeatils />} />
+
+      
+
 
 
     </Routes>
