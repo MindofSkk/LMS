@@ -9,6 +9,7 @@ import { Login } from "../User/Login";
 import { Signup } from "../User/Signup";
 import { AddBooks } from "../Admin/AddBooks";
 import { UserDeatils } from "../Admin/UserDeatils";
+import { Isuuedbooks } from "../pages/Isuuedbooks";
 
 export const MainRoutes = () => {
   return (
@@ -21,6 +22,7 @@ export const MainRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/addbooks" element={<AddBooks />} />
       <Route path="/userdetails" element={<UserDeatils />} />
+      <Route path="/isuuedbooks" element={<Isuuedbooks />} />
 
       
 

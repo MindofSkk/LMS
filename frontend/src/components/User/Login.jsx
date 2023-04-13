@@ -7,15 +7,23 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
- 
+import { useState } from "react";
+import axios from "axios";
 
 export const Login = () => {
+  const [text, setText] = useState({});
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setText({
+      ...text,
+      [name]: value,
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    console.log(text);
+    axios.post("http://localhost:8080/user/login", text).then((res) => {
+      console.log(res);
     });
   };
 
@@ -30,7 +38,8 @@ export const Login = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Login        </Typography>
+          Login{" "}
+        </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -40,6 +49,7 @@ export const Login = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={handleChange}
             autoFocus
           />
           <TextField
@@ -51,6 +61,7 @@ export const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -64,6 +75,7 @@ export const Login = () => {
           >
             Login
           </Button>
+
           <Grid container>
             <Grid item xs>
               {/* <Link href="#" variant="body2">

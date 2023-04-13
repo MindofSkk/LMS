@@ -4,9 +4,12 @@ import axios from "axios";
 import styles from "./Book.module.css";
 import { Button } from "@mui/material";
 import { TableData } from "./TableData";
+import { useNavigate } from "react-router-dom";
+
 export const Books = () => {
   const [books, setBook] = useState([]);
   const [value, setValue] = useState("");
+  const navigate=useNavigate()
 
   const getdata = () => {
     axios.get("http://localhost:7000/Books").then((res) => {
@@ -31,10 +34,17 @@ export const Books = () => {
 
   return (
     <div>
-      <div style={{ textAlign: "center" }}>
-        <br />
+      <br />
+      <div
+        style={{
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>User Name</div>
         <input
-        className={styles.input}
+          className={styles.input}
           type="text"
           placeholder=" Enter the Book Name..."
           onChange={(e) => {
@@ -42,6 +52,18 @@ export const Books = () => {
             handlesearch();
           }}
         />
+        <Button
+          variant="outlined"
+          style={{
+            color: "orange",
+            border: "1px solid orange",
+            fontWeight: "bolder",
+            marginRight: "30px",
+          }}
+          onClick={()=>navigate("/isuuedbooks")}
+        >
+          issued books{" "}
+        </Button>
       </div>
       <hr />
 

@@ -5,7 +5,7 @@ import { Alert, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export const AddBooks = () => {
+export const EditBook = () => {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({});
@@ -95,7 +95,7 @@ export const AddBooks = () => {
       </Box>
       <Button variant="outlined" onClick={add}>
         {" "}
-        Add Book{" "}
+        Edit{" "}
       </Button>
     </div>
   );

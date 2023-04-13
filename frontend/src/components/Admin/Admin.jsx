@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
+import { EditBook } from "./EditBook";
 const style = {
   position: "absolute",
   top: "50%",
@@ -41,9 +42,9 @@ export const Admin = (data) => {
 
   const addthisdata = (e) => {
     console.log(e.id);
+    
+      // {<EditBook data={e}/>}
 
-    // let fadata=alldata.filter((item)=>{
-    // })
   };
 
   //for modal
@@ -77,8 +78,6 @@ export const Admin = (data) => {
         <h3 style={{ textAlign: "center" }}>Admin</h3>
         <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
       </div>
-
-      {/* //table Section */}
 
       <TableContainer component={Paper}>
         <Modal

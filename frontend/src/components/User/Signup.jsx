@@ -8,15 +8,27 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { useState } from "react";
+import axios from "axios";
 
 export const Signup = () => {
+
+  const [text,setText]=useState({})
+  const handleChange=(e)=>{
+    const {value,name}=e.target;
+    setText({
+      
+      ...text,
+      [name]:value
+    })
+
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    console.log("text",text)
+   axios.post("http://localhost:8080/user/signup",text).then(()=>{
+   alert("sign up successfully")
+   })
   };
 
   return (
@@ -39,7 +51,10 @@ export const Signup = () => {
             fullWidth
             id="email"
             label="Enter Your Name"
-            name="Text"
+            name="name"
+            type="text"
+            onChange={handleChange}
+           
             // autoComplete="name"
             autoFocus
           />
@@ -49,8 +64,10 @@ export const Signup = () => {
             fullWidth
             id="email"
             label="Email Address"
+            type="email"
             name="email"
             autoComplete="email"
+            onChange={handleChange}
             autoFocus
           />
 
@@ -63,6 +80,7 @@ export const Signup = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChange}
           />
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
