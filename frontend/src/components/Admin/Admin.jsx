@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 // import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EditBook } from "./EditBook";
 const style = {
   position: "absolute",
@@ -32,7 +32,7 @@ export const Admin = (data) => {
   const [alldata, setAlldata] = useState([]);
   const navigate = useNavigate();
   const getdata = () => {
-    axios.get("http://localhost:7000/Books").then((res) => {
+    axios.get("http://localhost:8080/Books").then((res) => {
       setAlldata(res.data);
     });
   };
@@ -65,7 +65,7 @@ export const Admin = (data) => {
   const DeleteBooks = (e) => {
     let id = e.id;
     axios
-      .delete(`http://localhost:7000/Books/${id}`)
+      .delete(`http://localhost:8080/Books/${id}`)
       .then((res) =>getdata() )
       .catch((err) => console.log(err));
   };
@@ -79,6 +79,10 @@ export const Admin = (data) => {
         <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
       </div>
 
+
+
+
+
       <TableContainer component={Paper}>
         <Modal
           open={open}
@@ -88,13 +92,13 @@ export const Admin = (data) => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h3">
-              {dis.title}{" "}
+              {dis.Name}{" "}
             </Typography>
             <p>
-              Publisher : {dis.publisher} {dis.pages}
+              Publisher : {dis.Publisher} {dis.Pages}
             </p>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {dis.description}{" "}
+              {dis.Description}{" "}
             </Typography>
           </Box>
         </Modal>
@@ -117,6 +121,7 @@ export const Admin = (data) => {
               </TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
                 {" "}
+                
                 Edit
               </TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
@@ -132,18 +137,20 @@ export const Admin = (data) => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.title}
+                  {row.Name}
                 </TableCell>
-                <TableCell align="center">{row.publisher}</TableCell>
-                <TableCell align="center">{row.author}</TableCell>
-                <TableCell align="center">{row.pages}</TableCell>
+                <TableCell align="center">{row.Publisher}</TableCell>
+                <TableCell align="center">{row.Auther}</TableCell>
+                <TableCell align="center">{row.Pages}</TableCell>
                 <TableCell align="center" onClick={(e) => handleOpen(row)}>
                   <u> More Details</u>{" "}
                 </TableCell>
 
                 <TableCell align="center">
                   <Button variant="outlined" onClick={(e) => addthisdata(row)}>
-                    Edit
+                    {/* Edit */}
+                    <Link to={`/edit/${row._id}`}>Edit</Link>
+
                   </Button>
                 </TableCell>
                 <TableCell align="center">

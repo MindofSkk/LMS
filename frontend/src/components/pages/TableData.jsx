@@ -34,9 +34,7 @@ export const TableData = (data) => {
 
   const addthisdata = (e) => {
     console.log(e.id);
-   alert("First Login")
-    // let fadata=alldata.filter((item)=>{
-    // })
+    alert("Books Add");
   };
 
   //for modal
@@ -62,13 +60,13 @@ export const TableData = (data) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h3">
-            {dis.title}{" "}
+            {dis.Name}{" "}
           </Typography>
           <p>
-            Publisher : {dis.publisher} {dis.pages}
+            Publisher : {dis.Publisher} {dis.Pages}
           </p>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {dis.description}{" "}
+            {dis.Description}{" "}
           </Typography>
         </Box>
       </Modal>
@@ -102,11 +100,11 @@ export const TableData = (data) => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.title}
+                {row.Name}
               </TableCell>
-              <TableCell align="center">{row.publisher}</TableCell>
-              <TableCell align="center">{row.author}</TableCell>
-              <TableCell align="center">{row.pages}</TableCell>
+              <TableCell align="center">{row.Publisher}</TableCell>
+              <TableCell align="center">{row.Auther}</TableCell>
+              <TableCell align="center">{row.Pages}</TableCell>
               <TableCell align="center" onClick={(e) => handleOpen(row)}>
                 {/* <u style={{color:"green",fontWeight:"bolder"}}> More Details</u>{" "} */}
                 <Button variant="contained" endIcon={<ExpandMoreIcon />}>

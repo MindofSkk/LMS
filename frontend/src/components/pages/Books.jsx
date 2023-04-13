@@ -9,10 +9,11 @@ import { useNavigate } from "react-router-dom";
 export const Books = () => {
   const [books, setBook] = useState([]);
   const [value, setValue] = useState("");
-  const navigate=useNavigate()
+  const navigate=useNavigate();
+  const name =JSON.parse(localStorage.getItem("Name"))  ;
 
   const getdata = () => {
-    axios.get("http://localhost:7000/Books").then((res) => {
+    axios.get("http://localhost:8080/books").then((res) => {
       setBook(res.data);
     });
   };
@@ -42,7 +43,7 @@ export const Books = () => {
           justifyContent: "space-between",
         }}
       >
-        <div>User Name</div>
+        <div style={{marginLeft: "30px", fontWeight:"bolder"}}>{name}</div>
         <input
           className={styles.input}
           type="text"

@@ -6,12 +6,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 export const Login = () => {
   const [text, setText] = useState({});
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { value, name } = e.target;
     setText({
@@ -22,9 +23,35 @@ export const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(text);
-    axios.post("http://localhost:8080/user/login", text).then((res) => {
-      console.log(res);
+
+  if(text.email=="admin@gmail.com" && text.password=="admin@gmail.com")
+  { let a="123"
+    localStorage.setItem("token", JSON.stringify(a));
+    localStorage.setItem("Name",JSON.stringify("admin"))
+    navigate("/admin")
+  }
+  else{
+    axios
+    .post("http://localhost:8080/user/login", text)
+    .then((res) => {
+      console.log(res.data.document.token);
+      let token = res.data.document.token;
+      let name=res.data.document.name;
+      console.log(token);
+      if (token) {
+        localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("Name",JSON.stringify(name))
+
+        navigate("/books");
+      }
+    })
+    .catch((err) => {
+      alert("invalid credantials");
     });
+
+  }
+
+  
   };
 
   return (
