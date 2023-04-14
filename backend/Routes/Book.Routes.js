@@ -25,31 +25,28 @@ bookController.patch("/:id", async (req, res) => {
   data.save();
 });
 
-
 bookController.get("/:id", async (req, res) => {
-  const bookId = req.params.id; 
+  const bookId = req.params.id;
 
   BookModel.findById(bookId)
-    .then(book => {
+    .then((book) => {
       if (!book) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: "User not found" });
       }
       res.json(book);
     })
-    .catch(error => {
-      res.status(500).json({ error: 'Internal server error' });
+    .catch((error) => {
+      res.status(500).json({ error: "Internal server error" });
     });
 });
 
-
-
-
-
-
-
-
-
-
+bookController.get("/search/:id", async (req, res) => {
+  console.log("search", req.params.id);
+  let data = await BookModel.find({
+    $or: [{ Name: { $regex: req.params.id } }],
+  });
+  res.send(data);
+});
 
 module.exports = {
   bookController,

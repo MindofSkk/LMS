@@ -17,7 +17,7 @@ userController.get("/", async (req, res) => {
 //signup
 
 userController.post("/signup", async (req, res) => {
-  const { name,email, password } = req.body;
+  const { name, email, password } = req.body;
   const existing_user = await userModel.findOne({ email });
 
   if (existing_user) {
@@ -31,8 +31,7 @@ userController.post("/signup", async (req, res) => {
       const new_user = new userModel({
         name,
         email,
-        password: hash
-       
+        password: hash,
       });
 
       await new_user.save();
