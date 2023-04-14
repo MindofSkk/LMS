@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Alert, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,7 +17,6 @@ export const AddBooks = () => {
   };
 
   const add = () => {
-    // console.log(inputs);
     axios.post("http://localhost:8080/books/add", inputs).then((res) => {
       console.log(res);
     });

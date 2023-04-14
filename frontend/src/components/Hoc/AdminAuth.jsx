@@ -5,7 +5,6 @@ export const AdminAuth = ({ children }) => {
   const token = JSON.parse(localStorage.getItem("token"));
   const name = JSON.parse(localStorage.getItem("Name"));
 
-//   console.log(token);
 
   if (token !== "123" && name !== "admin") {
     return <Navigate to="/login" />;

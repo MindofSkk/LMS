@@ -15,7 +15,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Link, useNavigate } from "react-router-dom";
-import { EditBook } from "./EditBook";
 const style = {
   position: "absolute",
   top: "50%",
@@ -42,9 +41,6 @@ export const Admin = (data) => {
 
   const addthisdata = (e) => {
     console.log(e.id);
-    
-      // {<EditBook data={e}/>}
-
   };
 
   //for modal
@@ -66,7 +62,7 @@ export const Admin = (data) => {
     let id = e.id;
     axios
       .delete(`http://localhost:8080/Books/${id}`)
-      .then((res) =>getdata() )
+      .then((res) => getdata())
       .catch((err) => console.log(err));
   };
 
@@ -78,10 +74,6 @@ export const Admin = (data) => {
         <h3 style={{ textAlign: "center" }}>Admin</h3>
         <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
       </div>
-
-
-
-
 
       <TableContainer component={Paper}>
         <Modal
@@ -121,7 +113,6 @@ export const Admin = (data) => {
               </TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
                 {" "}
-                
                 Edit
               </TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
@@ -150,7 +141,6 @@ export const Admin = (data) => {
                   <Button variant="outlined" onClick={(e) => addthisdata(row)}>
                     {/* Edit */}
                     <Link to={`/edit/${row._id}`}>Edit</Link>
-
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -162,8 +152,6 @@ export const Admin = (data) => {
                     Delete
                   </Button>
                 </TableCell>
-
-                {/* <TableCell align="center">{row.protein}</TableCell> */}
               </TableRow>
             ))}
           </TableBody>

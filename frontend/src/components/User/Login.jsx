@@ -24,34 +24,30 @@ export const Login = () => {
     event.preventDefault();
     console.log(text);
 
-  if(text.email=="admin@gmail.com" && text.password=="admin@gmail.com")
-  { let a="123"
-    localStorage.setItem("token", JSON.stringify(a));
-    localStorage.setItem("Name",JSON.stringify("admin"))
-    navigate("/admin")
-  }
-  else{
-    axios
-    .post("http://localhost:8080/user/login", text)
-    .then((res) => {
-      console.log(res.data.document.token);
-      let token = res.data.document.token;
-      let name=res.data.document.name;
-      console.log(token);
-      if (token) {
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("Name",JSON.stringify(name))
+    if (text.email == "admin@gmail.com" && text.password == "admin@gmail.com") {
+      let a = "123";
+      localStorage.setItem("token", JSON.stringify(a));
+      localStorage.setItem("Name", JSON.stringify("admin"));
+      navigate("/admin");
+    } else {
+      axios
+        .post("http://localhost:8080/user/login", text)
+        .then((res) => {
+          console.log(res.data.document.token);
+          let token = res.data.document.token;
+          let name = res.data.document.name;
+          console.log(token);
+          if (token) {
+            localStorage.setItem("token", JSON.stringify(token));
+            localStorage.setItem("Name", JSON.stringify(name));
 
-        navigate("/books");
-      }
-    })
-    .catch((err) => {
-      alert("invalid credantials");
-    });
-
-  }
-
-  
+            navigate("/books");
+          }
+        })
+        .catch((err) => {
+          alert("invalid credantials");
+        });
+    }
   };
 
   return (

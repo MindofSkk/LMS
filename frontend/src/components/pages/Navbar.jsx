@@ -13,13 +13,12 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-// const settings = ["Singup / Login", "Admin", "Logout"];
+import { Link,  useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -155,11 +154,7 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
+             
 
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">
@@ -173,7 +168,15 @@ export const Navbar = () => {
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center" onClick={()=>{localStorage.removeItem("token"); navigate("/")}}>Logout</Typography>
+                <Typography
+                  textAlign="center"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>

@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Alert, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export const EditBook = () => {
   const { id } = useParams();
-  const [predata, setPredata] = useState({});
+  const [inputs, setInputs] = useState({});
 
   const getdata = () => {
     axios
       .get(`http://localhost:8080/books/${id}`)
-      .then((res) => setPredata(res.data));
+      .then((res) => setInputs(res.data));
   };
   useEffect(() => {
     getdata();
   }, []);
-  console.log(predata.Name)
   /////////////////////////////////
   const navigate = useNavigate();
-
-  const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -30,13 +27,17 @@ export const EditBook = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const add = () => {
+  const updatedetails = () => {
     console.log(inputs);
 
-    // axios.post("http://localhost:8080/books/add", inputs).then((res) => {
-    //   console.log(res);
-    // });
-    alert("Books add on data base");
+    axios
+      .patch(`http://localhost:8080/books/${id}`, inputs)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+    alert("Details Up to date");
+    navigate("/admin");
   };
 
   return (
@@ -63,52 +64,66 @@ export const EditBook = () => {
           autoComplete="off"
         >
           <TextField
-            id="outlined-basic"
-            defaultValue={predata.title}
-            variant="outlined"
+            id="outlined-number"
+            label="Name"
             name="Name"
-            value={inputs.name}
+            type="Text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Name}
             onChange={handleChange}
           />
 
           <TextField
-            id="outlined-basic"
-            defaultValue={predata.auther}
+            id="outlined-number"
             label="Auther"
-            variant="outlined"
             name="Auther"
-            value={inputs.name}
+            type="Text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Auther}
             onChange={handleChange}
           />
 
           <TextField
-            id="outlined-basic"
+            id="outlined-number"
             label="Publisher"
-            variant="outlined"
             name="Publisher"
-            value={inputs.name}
+            type="Text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Publisher}
             onChange={handleChange}
           />
 
           <TextField
-            id="outlined-basic"
+            id="outlined-number"
             label="Description"
-            variant="outlined"
             name="Description"
-            value={inputs.name}
+            type="Text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Description}
             onChange={handleChange}
           />
+
           <TextField
-            id="outlined-basic"
+            id="outlined-number"
             label="Pages"
-            variant="outlined"
             type="number"
             name="Pages"
-            value={inputs.name}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Pages}
             onChange={handleChange}
           />
         </Box>
-        <Button variant="outlined" onClick={add}>
+        <Button variant="outlined" onClick={updatedetails}>
           {" "}
           UPDATE
         </Button>

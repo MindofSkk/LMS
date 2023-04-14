@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import Box from "@mui/material/Box";
@@ -35,6 +33,11 @@ export const TableData = (data) => {
   const addthisdata = (e) => {
     console.log(e.id);
     alert("Books Add");
+
+    var Booksdata = JSON.parse(localStorage.getItem("Booksdata")) || [];
+    Booksdata.push(e);
+
+    localStorage.setItem("Booksdata", JSON.stringify(Booksdata));
   };
 
   //for modal
@@ -49,6 +52,8 @@ export const TableData = (data) => {
     setDis(e);
   };
   const handleClose = () => setOpen(false);
+
+  ////add details
 
   return (
     <TableContainer component={Paper}>
@@ -106,7 +111,6 @@ export const TableData = (data) => {
               <TableCell align="center">{row.Auther}</TableCell>
               <TableCell align="center">{row.Pages}</TableCell>
               <TableCell align="center" onClick={(e) => handleOpen(row)}>
-                {/* <u style={{color:"green",fontWeight:"bolder"}}> More Details</u>{" "} */}
                 <Button variant="contained" endIcon={<ExpandMoreIcon />}>
                   More Details
                 </Button>
@@ -125,8 +129,6 @@ export const TableData = (data) => {
                   Add
                 </Button>
               </TableCell>
-
-              {/* <TableCell align="center">{row.protein}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>

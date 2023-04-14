@@ -19,10 +19,15 @@ export const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/user" element={<Users />} />
-      <Route path="/admin" element={
-      
-      <AdminAuth>  <Admin /></AdminAuth>
-      } />
+      <Route
+        path="/admin"
+        element={
+          <AdminAuth>
+            {" "}
+            <Admin />
+          </AdminAuth>
+        }
+      />
 
       <Route
         path="/books"
@@ -37,8 +42,7 @@ export const MainRoutes = () => {
       <Route path="/addbooks" element={<AddBooks />} />
       <Route path="/userdetails" element={<UserDeatils />} />
       <Route path="/isuuedbooks" element={<Isuuedbooks />} />
-      <Route path="/edit/:id" element={<EditBook/>} />
-
+      <Route path="/edit/:id" element={<EditBook />} />
     </Routes>
   );
 };

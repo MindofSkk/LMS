@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 // import Link from "@mui/material/Link";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -12,23 +12,22 @@ import { useState } from "react";
 import axios from "axios";
 
 export const Signup = () => {
-
-  const [text,setText]=useState({})
-  const handleChange=(e)=>{
-    const {value,name}=e.target;
+  const [text, setText] = useState({});
+  const Navigate = useNavigate();
+  const handleChange = (e) => {
+    const { value, name } = e.target;
     setText({
-      
       ...text,
-      [name]:value
-    })
-
-  }
+      [name]: value,
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("text",text)
-   axios.post("http://localhost:8080/user/signup",text).then(()=>{
-   alert("sign up successfully")
-   })
+    console.log("text", text);
+    axios.post("http://localhost:8080/user/signup", text).then(() => {
+      alert("sign up successfully");
+    });
+    Navigate("/login");
   };
 
   return (
@@ -45,7 +44,7 @@ export const Signup = () => {
           Sign up
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <TextField
+          <TextField
             margin="normal"
             required
             fullWidth
@@ -54,7 +53,6 @@ export const Signup = () => {
             name="name"
             type="text"
             onChange={handleChange}
-           
             // autoComplete="name"
             autoFocus
           />
@@ -95,7 +93,6 @@ export const Signup = () => {
             Sign up
           </Button>
           <Grid container>
-            
             <Grid item>
               <Link to="/login" variant="body2">
                 {"Login"}
