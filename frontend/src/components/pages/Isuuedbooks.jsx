@@ -14,6 +14,8 @@ import Box from "@mui/material/Box";
 
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -28,20 +30,28 @@ const style = {
 };
 
 export const Isuuedbooks = () => {
-  var booksdata = JSON.parse(localStorage.getItem("Booksdata"));
+  console.log("hello")
   const [alldata, setAlldata] = useState([]);
+  const { id } = useParams();
   useEffect(() => {
-    setAlldata(booksdata);
+    getdata()
   }, []);
 
-  // console.log(alldata.Name)
+const getdata=()=>
+{
+  axios
+  .get(`http://localhost:8080/books/issuebooklist/${id}`)
+  .then((res) => setAlldata(res.data.issuedBooks))
+}
 
+  
+
+//modal
   const [open, setOpen] = React.useState(false);
   const [dis, setDis] = useState({});
   const handleOpen = (e) => {
     setOpen(true);
 
-    console.log("open", e);
 
     setDis(e);
   };
@@ -51,7 +61,7 @@ export const Isuuedbooks = () => {
 
   const deletedata = (e) => {
     const updatedData = alldata.filter((item) => item._id !== e._id);
-    console.log(updatedData);
+    // console.log(updatedData);
     localStorage.setItem("Booksdata", JSON.stringify(updatedData));
     setAlldata(updatedData);
   };
@@ -83,6 +93,8 @@ export const Isuuedbooks = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "gray" }}>
+            <TableCell style={{ fontWeight: "bolder" }}></TableCell>
+
               <TableCell style={{ fontWeight: "bolder" }}>Books Name</TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
                 Publisher
@@ -109,8 +121,12 @@ export const Isuuedbooks = () => {
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
+                  <TableCell component="th" scope="row">
+                  <TableCell align="center"><img src={`http://localhost:8080/${row.Image}`} alt="" width={"80px"} height={"100px"} /></TableCell>
+
+                </TableCell>
                 <TableCell component="th" scope="row">
-                  {console.log(row.Name)} {row.Name}
+                  {row.Name}
                 </TableCell>
                 <TableCell align="center">{row.Publisher}</TableCell>
                 <TableCell align="center">{row.Auther}</TableCell>

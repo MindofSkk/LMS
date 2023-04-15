@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 // import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -31,9 +32,18 @@ export const TableData = (data) => {
   let alldata = data.data;
 
   const addthisdata = (e) => {
-    console.log(e.id);
+    // console.log(e);
+    const userdata= JSON.parse(localStorage.getItem("userdata"));
+    // console.log(userdata.id)
     alert("Books Add");
+    const payload = {
+      ...e,
+      userid:userdata.id
 
+    }
+    axios.post("http://localhost:8080/books/issuebook", payload).then((res)=>{
+      console.log(res)
+    })
     var Booksdata = JSON.parse(localStorage.getItem("Booksdata")) || [];
     Booksdata.push(e);
 
@@ -47,7 +57,7 @@ export const TableData = (data) => {
   const handleOpen = (e) => {
     setOpen(true);
 
-    console.log("open", e);
+    // console.log("open", e);
 
     setDis(e);
   };
@@ -77,7 +87,10 @@ export const TableData = (data) => {
       </Modal>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow style={{ backgroundColor: "gray" }}>
+          <TableRow style={{ backgroundColor: "gray",color:"white"}}>
+          <TableCell style={{ fontWeight: "bolder" }}></TableCell>
+
+
             <TableCell style={{ fontWeight: "bolder" }}>Books Name</TableCell>
             <TableCell style={{ fontWeight: "bolder" }} align="center">
               Publisher
@@ -104,6 +117,8 @@ export const TableData = (data) => {
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
+                            <TableCell align="center"><img src={`http://localhost:8080/${row.Image}`} alt="" width={"80px"} height={"100px"} /></TableCell>
+
               <TableCell component="th" scope="row">
                 {row.Name}
               </TableCell>
@@ -126,7 +141,7 @@ export const TableData = (data) => {
                     fontWeight: "bolder",
                   }}
                 >
-                  Add
+                  Issue Book
                 </Button>
               </TableCell>
             </TableRow>

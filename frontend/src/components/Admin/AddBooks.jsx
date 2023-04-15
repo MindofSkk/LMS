@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ export const AddBooks = () => {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({});
+  const [image, setImage] = useState(null);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -16,15 +17,23 @@ export const AddBooks = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
+  const formdata = new FormData();
+  formdata.append("Name", inputs.Name);
+  formdata.append("Auther", inputs.Auther);
+  formdata.append("Publisher", inputs.Publisher);
+  formdata.append("Description", inputs.Description);
+  formdata.append("Pages", inputs.Pages);
+  formdata.append("Image", image);
+
   const add = () => {
-    axios.post("http://localhost:8080/books/add", inputs).then((res) => {
+    axios.post("http://localhost:8080/books/add", formdata).then((res) => {
       console.log(res);
     });
-    alert("Books add on data base")
+    alert("Books add on data base");
   };
+  //  console.log(image)
   return (
     <div style={{ textAlign: "center" }}>
-
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {" "}
         <Button onClick={() => navigate("/userdetails")}>User Details</Button>
@@ -91,6 +100,7 @@ export const AddBooks = () => {
           value={inputs.name}
           onChange={handleChange}
         />
+        <Input type="file" onChange={(e) => setImage(e.target.files[0])} />
       </Box>
       <Button variant="outlined" onClick={add}>
         {" "}

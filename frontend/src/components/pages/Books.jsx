@@ -11,6 +11,7 @@ export const Books = () => {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
   const name = JSON.parse(localStorage.getItem("Name"));
+  const user=JSON.parse(localStorage.getItem("userdata"));
 
   const getdata = () => {
     axios.get("http://localhost:8080/books").then((res) => {
@@ -43,7 +44,7 @@ export const Books = () => {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ marginLeft: "30px", fontWeight: "bolder" }}>{name}</div>
+        <div style={{ marginLeft: "30px", fontWeight: "bolder" }}>{user.name}</div>
         <input
           className={styles.input}
           type="text"
@@ -61,7 +62,7 @@ export const Books = () => {
             fontWeight: "bolder",
             marginRight: "30px",
           }}
-          onClick={() => navigate("/isuuedbooks")}
+          onClick={() => navigate(`/issuebooklist/${user.id}`)}
         >
           issued books{" "}
         </Button>

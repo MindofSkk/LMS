@@ -36,7 +36,8 @@ export const Login = () => {
           console.log(res.data.document.token);
           let token = res.data.document.token;
           let name = res.data.document.name;
-          console.log(token);
+          localStorage.setItem("userdata", JSON.stringify(res.data.document));
+
           if (token) {
             localStorage.setItem("token", JSON.stringify(token));
             localStorage.setItem("Name", JSON.stringify(name));

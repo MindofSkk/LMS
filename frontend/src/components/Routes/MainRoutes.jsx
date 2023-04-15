@@ -41,7 +41,7 @@ export const MainRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/addbooks" element={<AddBooks />} />
       <Route path="/userdetails" element={<UserDeatils />} />
-      <Route path="/isuuedbooks" element={<Isuuedbooks />} />
+      <Route path="/issuebooklist/:id" element={<Isuuedbooks />} />
       <Route path="/edit/:id" element={<EditBook />} />
     </Routes>
   );
