@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { Button, Input } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BorderAll } from "@mui/icons-material";
 
 export const AddBooks = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export const AddBooks = () => {
   formdata.append("Description", inputs.Description);
   formdata.append("Pages", inputs.Pages);
   formdata.append("Image", image);
+  formdata.append("Quantity", inputs.Quantity);
 
   const add = () => {
     axios.post("http://localhost:8080/books/add", formdata).then((res) => {
@@ -31,9 +33,8 @@ export const AddBooks = () => {
     });
     alert("Books add on data base");
   };
-  //  console.log(image)
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" , backgroundColor:"white"}}>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {" "}
         <Button onClick={() => navigate("/userdetails")}>User Details</Button>
@@ -52,19 +53,24 @@ export const AddBooks = () => {
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
+          height: "400px",
+          border: "1px solid Black",
+          width: "80%",
+          backgroundColor: "white",
+          margin: "auto",
+          textAlign:"center"
         }}
-        noValidate
-        autoComplete="off"
       >
+        <h4 style={{margin:"auto",paddingTop:"20px ", paddingBottom:"20px"}}>Books Details</h4>
         <TextField
           id="outlined-basic"
           label="Book Name"
           variant="outlined"
           name="Name"
+          width="200px"
           value={inputs.name}
           onChange={handleChange}
         />
-
         <TextField
           id="outlined-basic"
           label="Auther"
@@ -73,7 +79,6 @@ export const AddBooks = () => {
           value={inputs.name}
           onChange={handleChange}
         />
-
         <TextField
           id="outlined-basic"
           label="Publisher"
@@ -82,7 +87,7 @@ export const AddBooks = () => {
           value={inputs.name}
           onChange={handleChange}
         />
-
+        <br />
         <TextField
           id="outlined-basic"
           label="Description"
@@ -100,12 +105,27 @@ export const AddBooks = () => {
           value={inputs.name}
           onChange={handleChange}
         />
-        <Input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        <TextField
+          id="outlined-basic"
+          label="Quantity"
+          variant="outlined"
+          type="number"
+          name="Quantity"
+          value={inputs.name}
+          onChange={handleChange}
+        />
+        <br />
+        <Input type="file" onChange={(e) => setImage(e.target.files[0])} />{" "}
+        <br />
+        <Button
+          variant="contained"
+          onClick={add}
+          style={{ marginTop: "30px", width: "350px", fontWeight: "bolder" }}
+        >
+          {" "}
+          Add Book{" "}
+        </Button>
       </Box>
-      <Button variant="outlined" onClick={add}>
-        {" "}
-        Add Book{" "}
-      </Button>
     </div>
   );
 };

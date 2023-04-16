@@ -19,6 +19,7 @@ userController.get("/", async (req, res) => {
 userController.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
   const existing_user = await userModel.findOne({ email });
+  console.log(req.file.path,name,email,password)
 
   if (existing_user) {
     res.send({ Message: "User already exist" });
@@ -31,6 +32,7 @@ userController.post("/signup", async (req, res) => {
       const new_user = new userModel({
         name,
         email,
+        Image:req.file.path,
         password: hash,
       });
 
@@ -61,14 +63,15 @@ userController.post("/login", async (req, res) => {
         const token = jwt.sign({ user_id }, process.env.SECRET);
         const name = user.name;
         const email = user.email;
-        const mobile = user.mobile;
         const id = user._id;
         const document = {
           name: name,
           email: email,
-          mobile: mobile,
           id: id,
           token: token,
+          Image:user.Image,
+          issuedBooks:user.issuedBooks
+          
         };
         res.send({ Message: "Login successfull", document: document });
       } else {
@@ -92,7 +95,6 @@ userController.delete("/:id", async (req, res) => {
   }
 });
 
-// patch
 userController.patch("/:id", async (req, res) => {
   try {
     const _id = req.params.id;

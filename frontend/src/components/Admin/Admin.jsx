@@ -66,6 +66,26 @@ export const Admin = (data) => {
       .catch((err) => console.log(err));
   };
 
+  // pagniation
+  const [page, setPage] = useState(1);
+  const EachPage = 4;
+
+  const totalPages = Math.ceil(alldata.length / EachPage);
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+  const BookShow =  alldata.slice(
+    (page - 1) * EachPage,
+    page * EachPage
+  );
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -75,7 +95,7 @@ export const Admin = (data) => {
         <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
       </div>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: "80%", margin: "auto" }}>
         <Modal
           open={open}
           onClose={handleClose}
@@ -97,7 +117,8 @@ export const Admin = (data) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "gray" }}>
-              <TableCell style={{ fontWeight: "bolder" }}>Books Name</TableCell>
+            <TableCell style={{ fontWeight: "bolder" }}></TableCell>
+              <TableCell style={{ fontWeight: "bolder" }}> Name</TableCell>
               <TableCell style={{ fontWeight: "bolder" }} align="center">
                 Publisher
               </TableCell>
@@ -122,11 +143,19 @@ export const Admin = (data) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {alldata.map((row, index) => (
+            {BookShow.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
+                    <TableCell align="left">
+                <img
+                  src={`http://localhost:8080/${row.Image}`}
+                  alt=""
+                  width={"80px"}
+                  height={"100px"}
+                />
+              </TableCell>
                 <TableCell component="th" scope="row">
                   {row.Name}
                 </TableCell>
@@ -157,6 +186,38 @@ export const Admin = (data) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "10px",
+          backgroundColor:"transparent"
+          ,
+          padding:"20px 0px ",
+          width:"80%",
+          margin :"auto",
+          
+        }}
+      >
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            marginRight: "5px",
+          }}
+          onClick={handlePrevPage}
+        >
+          Prev
+        </Button>
+        <Button
+          variant="contained"
+          style={{ backgroundColor: "black", color: "white" }}
+          onClick={handleNextPage}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

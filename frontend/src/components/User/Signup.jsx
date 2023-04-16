@@ -10,9 +10,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import axios from "axios";
+import { Avatar } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 
 export const Signup = () => {
   const [text, setText] = useState({});
+  const [image, setImage] = useState(null);
+
   const Navigate = useNavigate();
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -24,25 +29,35 @@ export const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("text", text);
-    axios.post("http://localhost:8080/user/signup", text).then(() => {
+    const formdata = new FormData();
+    formdata.append("name", text.name);
+    formdata.append("email", text.email);
+    formdata.append("password", text.password);   
+    formdata.append("Image", image);
+    axios.post("http://localhost:8080/user/signup", formdata).then(() => {
       alert("sign up successfully");
     });
     Navigate("/login");
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
+    <br />
+    <Container component="main" maxWidth="xs"style={{backgroundColor:"white", border:"1px solid black"}}>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
+             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -80,10 +95,21 @@ export const Signup = () => {
             autoComplete="current-password"
             onChange={handleChange}
           />
-          {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
+          <lable>Upload Your Profile Pic</lable>
+           <TextField
+            margin="normal"
+            id="outlined-basic"
+            // label="Profile Pic"
+            variant="outlined"
+            fullWidth
+            type="file"
+            name="Image"
+            onChange={(e) => setImage(e.target.files[0])}            
+           
+        
+          />
+          
+   
           <Button
             type="submit"
             fullWidth
@@ -92,15 +118,16 @@ export const Signup = () => {
           >
             Sign up
           </Button>
-          <Grid container>
+          <Grid container  style={{paddingBottom:"20px"}} >
             <Grid item>
               <Link to="/login" variant="body2">
-                {"Login"}
+                {"Already have an account? Login"}
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
     </Container>
+    </>
   );
 };

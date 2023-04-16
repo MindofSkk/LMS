@@ -5,7 +5,9 @@ const bookSchema = new mongoose.Schema({
   Auther: { type: String, required: true },
   Publisher: { type: String, required: true },
   Description: { type: String, required: true },
-  Pages: { type: Number, required: true },
+  Pages: { type:Number , required: true },
+  Image:{type:String},
+  Quantity:{type:Number, required: true }
 });
 
 const BookModel = mongoose.model("book", bookSchema);

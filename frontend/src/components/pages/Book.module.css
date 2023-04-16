@@ -1,9 +1,126 @@
-.input{
+.card {
+  width: 420px;
+  height: 220px;
+  border: 1px solid greenyellow;
+  border-radius: 5px;
+  background-color: transparent;
+  display: flex;
+  background-color: aliceblue;
+}
+.book_image {
+  margin: auto;
+  margin-left: 10px;
+  width: 200px;
+  height: 190px;
+  border-radius: 5px;
+}
+.book_image > img {
+  border-radius: 5px;
+}
 
-    /* background-color: red; */
-    border: none;
-    color: black;
-    text-decoration: none;
-    border-bottom: 1px solid black;
-    
+.tilte {
+  margin: 2px;
+  padding-left: 14px;
+  height: 130px;
+}
+
+.button {
+  padding-left: 5px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid black;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: black;
+}
+
+.wrap {
+  width: 30%;
+}
+.containerbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+.containerBox {
+  height: 450px;
+  width: 100%;
+  border: 1px solid black;
+  background-image: url("https://camo.githubusercontent.com/1edd75be9b2c1739f51d6f0a9d5da43a657eb59f6936a580dd95e6725a757f87/68747470733a2f2f7777772e706978656c2d73747564696f732e636f6d2f626c6f672f77702d636f6e74656e742f75706c6f6164732f323031382f31322f3031322e6a7067");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.containerBox > div {
+  font-size: 50px;
+  /* border: 1px solid white; */
+  position: relative;
+  left: 970px;
+  top: 265px;
+  width: 500px;
+  height: 250;
+  color: white;
+}
+.containerButton {
+
+  
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.containerButton:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  background-color: black;
+  color: white;
+  text-align: center;
+  border: 2px solid orange;
 }

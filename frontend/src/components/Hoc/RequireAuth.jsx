@@ -10,5 +10,7 @@ export const RequireAuth = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
+ 
+
   return children;
 };

@@ -13,6 +13,9 @@ import { Isuuedbooks } from "../pages/Isuuedbooks";
 import { RequireAuth } from "../Hoc/RequireAuth";
 import { AdminAuth } from "../Hoc/AdminAuth";
 import { EditBook } from "../Admin/EditBook";
+import { Profile } from "../pages/Profile";
+import { Conatct } from "../pages/Conatct";
+import { About } from "../pages/About";
 
 export const MainRoutes = () => {
   return (
@@ -20,29 +23,36 @@ export const MainRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/user" element={<Users />} />
       <Route
-        path="/admin"
+        path="/Admin"
         element={
           <AdminAuth>
-            {" "}
             <Admin />
           </AdminAuth>
         }
       />
 
       <Route
-        path="/books"
+        path="/Profile"
         element={
           <RequireAuth>
-            <Books />
+            <Profile />
           </RequireAuth>
         }
       />
+      <Route path="/books" element={<Books />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/addbooks" element={<AddBooks />} />
       <Route path="/userdetails" element={<UserDeatils />} />
+
       <Route path="/issuebooklist/:id" element={<Isuuedbooks />} />
       <Route path="/edit/:id" element={<EditBook />} />
+      <Route path="/Contact" element={<Conatct />} />
+      <Route path="/About" element={<About />} />
+
+
+      {/* <Route path="/Profile" element={<Profile />} /> */}
     </Routes>
   );
 };
