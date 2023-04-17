@@ -41,7 +41,9 @@ export const EditBook = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{ textAlign: "center", backgroundColor: "white", height: "500px" }}
+    >
       <div style={{ textAlign: "center" }}>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           {" "}
@@ -98,6 +100,7 @@ export const EditBook = () => {
             value={inputs.Publisher}
             onChange={handleChange}
           />
+          <br />
 
           <TextField
             id="outlined-number"
@@ -120,6 +123,17 @@ export const EditBook = () => {
               shrink: true,
             }}
             value={inputs.Pages}
+            onChange={handleChange}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Quantity"
+            type="number"
+            name="Quantity"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={inputs.Quantity}
             onChange={handleChange}
           />
         </Box>

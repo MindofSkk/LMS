@@ -41,7 +41,8 @@ export const Login = () => {
 
           if (token) {
             localStorage.setItem("token", JSON.stringify(token));
-            navigate("/profile");          }
+            navigate("/profile");
+          }
         })
         .catch((err) => {
           alert("invalid credantials");

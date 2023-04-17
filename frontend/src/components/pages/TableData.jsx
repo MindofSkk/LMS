@@ -9,13 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,12 +27,9 @@ const style = {
 };
 
 export const TableData = (data) => {
-  {
-  }
   const token = JSON.parse(localStorage.getItem("token"));
 
   let alldata = data.data;
-  // console.log(alldata);
   const navigate = useNavigate();
   const addthisdata = (e) => {
     const userdata = JSON.parse(localStorage.getItem("userdata"));

@@ -22,7 +22,7 @@ export const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/user" element={<Users />} />
-      <Route
+      <Route 
         path="/Admin"
         element={
           <AdminAuth>
@@ -51,8 +51,6 @@ export const MainRoutes = () => {
       <Route path="/Contact" element={<Conatct />} />
       <Route path="/About" element={<About />} />
 
-
-      {/* <Route path="/Profile" element={<Profile />} /> */}
     </Routes>
   );
 };

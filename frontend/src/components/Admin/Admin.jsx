@@ -11,7 +11,6 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 
 import Box from "@mui/material/Box";
-// import Button from '@mui/material/Button';
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Link, useNavigate } from "react-router-dom";
@@ -90,9 +89,9 @@ export const Admin = (data) => {
     <div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {" "}
-        <Button onClick={() => navigate("/userdetails")}>User Details</Button>
+        <Button onClick={() => navigate("/userdetails")}  style={{color:"white"}}>User Details</Button>
         <h3 style={{ textAlign: "center" }}>Admin</h3>
-        <Button onClick={() => navigate("/addbooks")}>Add Books</Button>
+        <Button onClick={() => navigate("/addbooks")} style={{color:"white"}}>Add Books</Button>
       </div>
 
       <TableContainer component={Paper} style={{ width: "80%", margin: "auto" }}>
